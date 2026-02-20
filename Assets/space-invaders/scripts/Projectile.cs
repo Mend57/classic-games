@@ -10,7 +10,7 @@ public abstract class Projectile : MonoBehaviour
     }
 
     protected virtual void alienProjectileOnTrigger(Collider2D collision) {
-        if (!collision.CompareTag("Enemy") && !collision.CompareTag("TopAlien")) {
+        if (!collision.CompareTag("Enemy") && !collision.CompareTag("TopAlien") && !collision.CompareTag("Projectile")) {
             if (collision.CompareTag("Wall")) {
                 collision.GetComponent<Barrier>().decreaseHealth();
             }

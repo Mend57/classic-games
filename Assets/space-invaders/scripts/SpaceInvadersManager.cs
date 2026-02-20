@@ -74,7 +74,7 @@ public class SpaceInvadersManager : MonoBehaviour {
     }
 
     private void increaseFireRate() {
-        moveCooldown = (shootCooldownLimit - ALIEN_SHOOT_COOLDOWN_MULTIPLIER >= ALIEN_SHOOT_COOLDOWN_THRESHOLD) ? shootCooldownLimit -= ALIEN_SHOOT_COOLDOWN_MULTIPLIER : ALIEN_SHOOT_COOLDOWN_THRESHOLD;
+        shootCooldownLimit = (shootCooldownLimit - ALIEN_SHOOT_COOLDOWN_MULTIPLIER >= ALIEN_SHOOT_COOLDOWN_THRESHOLD) ? shootCooldownLimit -= ALIEN_SHOOT_COOLDOWN_MULTIPLIER : ALIEN_SHOOT_COOLDOWN_THRESHOLD;
     }
 
     private void handleMoveDown() {

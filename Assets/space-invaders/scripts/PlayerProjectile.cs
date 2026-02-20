@@ -16,7 +16,7 @@ public class PlayerProjectile : Projectile
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (!collision.CompareTag("Player")) {
+        if (!collision.CompareTag("Player") && !collision.CompareTag("Projectile")) {
             if (collision.CompareTag("Wall")) {
                 collision.GetComponent<Barrier>().decreaseHealth();
             }

@@ -1,6 +1,57 @@
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SpaceInvadersUIManager : MonoBehaviour {
-    //Intra-level Difficulty: As you shoot down aliens, fewer enemies are on screen for the hardware to process, causing the remaining, bottom-most invaders to move faster and faster.
-    //Inter-level Difficulty: Completing a level resets the invaders to the top, but they will start at a higher baseline speed than the previous level.
+    [SerializeField] private Text highScore, score, finalScore;
+    [SerializeField] private GameObject pauseMenu, gameOverMenu;
+    [SerializeField] private GameObject gameManager;
+    [SerializeField] private GameObject backgroundMusic;
+
+    private void Awake() {
+        unpause();
+        score.text = gameManager.GetComponent<SpaceInvadersManager>().score.ToString();
+    }
+
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Escape)) togglePause();
+    }
+
+    private void togglePause() {
+        if (Time.timeScale == 0f) unpause();
+        else pause();
+    }
+
+    public void unpause() {
+        Time.timeScale = 1f;
+        pauseMenu.SetActive(false);
+        backgroundMusic.GetComponent<AudioSource>().volume = backgroundMusic.GetComponent<AudioSource>().volume * 2;
+    }
+
+    private void pause() {
+        highScore.text = "High Score: " + SpaceInvadersManager.highScore.ToString();
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0f;
+        backgroundMusic.GetComponent<AudioSource>().volume = backgroundMusic.GetComponent<AudioSource>().volume / 2;
+    }
+
+    public void goToMenu() {
+        SceneManager.LoadScene(Scenes.MENU);
+    }
+
+    public void restartGame() {
+        SceneManager.LoadScene(Scenes.SPACE_INVADERS);
+    }
+
+    public void setScore() {
+        score.text = gameManager.GetComponent<SpaceInvadersManager>().score.ToString();
+    }
+
+    public void gameOver() {
+        highScore.text = "High Score: " + SpaceInvadersManager.highScore.ToString();
+        gameOverMenu.SetActive(true);
+        Time.timeScale = 0f;
+        backgroundMusic.GetComponent<AudioSource>().volume = backgroundMusic.GetComponent<AudioSource>().volume / 3;
+        finalScore.text = gameManager.GetComponent<SpaceInvadersManager>().score.ToString();
+    }
 }

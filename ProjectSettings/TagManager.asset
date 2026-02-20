@@ -7,6 +7,8 @@ TagManager:
   - Car
   - UIManager
   - Spawner
+  - Wall
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -46,6 +48,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1976140497
+    locked: 0
+  - name: UI
+    uniqueID: 3843015049
     locked: 0
   m_RenderingLayers:
   - Default

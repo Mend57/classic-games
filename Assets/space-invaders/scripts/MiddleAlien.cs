@@ -12,10 +12,6 @@ public class MiddleAlien : Alien
         projectile = gameManager.slowProjectile;
     }
 
-    protected override void setMoveCooldown() {
-        _moveCooldown = gameManager.moveCooldown + 0.05f;
-    }
-
     protected override void setScoreValue() {
         scoreValue = 20;
     }

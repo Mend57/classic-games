@@ -10,14 +10,14 @@ public abstract class Projectile : MonoBehaviour
     }
 
     protected virtual void alienProjectileOnTrigger(Collider2D collision) {
-        if (!collision.CompareTag("Enemy") && !collision.CompareTag("TopAlien") && !collision.CompareTag("Projectile")) {
+        if (!collision.CompareTag("Enemy") && !collision.CompareTag("Projectile")) {
             if (collision.CompareTag("Wall")) {
                 collision.GetComponent<Barrier>().decreaseHealth();
             }
             else if (collision.CompareTag("Player")) {
-                collision.GetComponent<Ship>().callPlayerDeath();
+                collision.GetComponent<Ship>().callPlayerGotHit();
             }
-            Destroy(gameObject);
+            if (collision.GetComponent<GameOverLimit>() == null) Destroy(gameObject);
         }
     }
 }

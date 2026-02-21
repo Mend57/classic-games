@@ -17,7 +17,7 @@ public class SpecialShip : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collision) {
         if (collision.GetComponent<Projectile>() != null) gameManager.increaseScore(value);
-        Destroy(gameObject);
+        if (collision.GetComponent<Limit>() == null) Destroy(gameObject);
     }
 
 

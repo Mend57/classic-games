@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4868477265878543914}
   - component: {fileID: -6529484172225903139}
   m_Layer: 0
-  m_Name: Square (1)
+  m_Name: MiddleEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

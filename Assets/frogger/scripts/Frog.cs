@@ -39,7 +39,8 @@ public class Frog : MonoBehaviour {
             Vector3 proposedTarget = transform.position + input * moveDistance;
             proposedTarget.x = Mathf.Clamp(proposedTarget.x, minX, maxX);
             proposedTarget.y = Mathf.Clamp(proposedTarget.y, minY, maxY);
-            targetPosition = proposedTarget; isMoving = true;
+            targetPosition = proposedTarget; 
+            isMoving = true;
             moveSound.GetComponent<AudioSource>().Play();
         }
     }

@@ -20,11 +20,11 @@ public class PlayerProjectile : Projectile
             if (collision.CompareTag("Wall")) {
                 collision.GetComponent<Barrier>().decreaseHealth();
             }
-            else if (collision.CompareTag("Enemy") || collision.CompareTag("TopAlien")) {
+            else if (collision.CompareTag("Enemy")) {
                 collision.GetComponent<Alien>().callAlienDeath();
             }
             gameManager.isPlayerProjectileActive = false;
-            Destroy(gameObject);
+            if (collision.GetComponent<GameOverLimit>() == null) Destroy(gameObject);
         }
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class SpaceInvadersUIManager : MonoBehaviour {
-    [SerializeField] private Text highScore, score, finalScore;
+    [SerializeField] private Text highScore, score, finalScore, finalHighScore;
     [SerializeField] private GameObject pauseMenu, gameOverMenu;
     [SerializeField] private GameObject gameManager;
     [SerializeField] private GameObject backgroundMusic;
@@ -48,10 +48,10 @@ public class SpaceInvadersUIManager : MonoBehaviour {
     }
 
     public void gameOver() {
-        highScore.text = "High Score: " + SpaceInvadersManager.highScore.ToString();
+        finalHighScore.text = "High Score: " + SpaceInvadersManager.highScore.ToString();
         gameOverMenu.SetActive(true);
         Time.timeScale = 0f;
-        backgroundMusic.GetComponent<AudioSource>().volume = backgroundMusic.GetComponent<AudioSource>().volume / 3;
+        backgroundMusic.GetComponent<AudioSource>().volume = backgroundMusic.GetComponent<AudioSource>().volume / 6;
         finalScore.text = gameManager.GetComponent<SpaceInvadersManager>().score.ToString();
     }
 }

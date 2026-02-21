@@ -6,7 +6,7 @@ public class Ship : MonoBehaviour
     [SerializeField] private float speed = 5f;
     [SerializeField] GameObject gameManagerObj;
     private GameObject projectile;
-    public event Action playerDeath;
+    public event Action playerHit;
     private SpaceInvadersManager gameManager;
 
     void Awake() {
@@ -16,11 +16,15 @@ public class Ship : MonoBehaviour
     }
 
     private void Update() {
-        float input = Input.GetAxisRaw("Horizontal");
-        transform.Translate(input * speed * Time.deltaTime * Vector3.right);
-        if(Input.GetKey(KeyCode.Space) && !gameManager.isPlayerProjectileActive) {
-            shoot();
-            gameManager.isPlayerProjectileActive = true;  
+        if(gameManager.spawned){
+            float input = Input.GetAxisRaw("Horizontal");
+            if (!gameManager.blockMovement || input != gameManager.limitDirection) {
+                transform.Translate(input * speed * Time.deltaTime * Vector3.right);
+            }
+            if (Input.GetKey(KeyCode.Space) && !gameManager.isPlayerProjectileActive) {
+                shoot();
+                gameManager.isPlayerProjectileActive = true;
+            }
         }
     }
 
@@ -29,7 +33,7 @@ public class Ship : MonoBehaviour
         gameManager.playShotSound(projectile);
     }
 
-    public void callPlayerDeath() {
-        playerDeath?.Invoke();
+    public void callPlayerGotHit() {
+        playerHit?.Invoke();
     }
 }

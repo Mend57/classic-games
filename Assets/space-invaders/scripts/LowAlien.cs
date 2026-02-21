@@ -13,10 +13,6 @@ public class LowAlien : Alien
         projectile = gameManager.fastProjectile;
     }
 
-    protected override void setMoveCooldown() {
-        _moveCooldown = gameManager.moveCooldown;
-    }
-
     protected override void setScoreValue() {
         scoreValue = 10;
     }

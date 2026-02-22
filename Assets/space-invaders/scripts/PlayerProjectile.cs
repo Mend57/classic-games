@@ -23,8 +23,10 @@ public class PlayerProjectile : Projectile
             else if (collision.CompareTag("Enemy")) {
                 collision.GetComponent<Alien>().callAlienDeath();
             }
-            gameManager.isPlayerProjectileActive = false;
-            if (collision.GetComponent<GameOverLimit>() == null) Destroy(gameObject);
+            if (collision.GetComponent<GameOverLimit>() == null && collision.GetComponent<Limit>() == null) {
+                gameManager.isPlayerProjectileActive = false;
+                Destroy(gameObject);
+            } 
         }
     }
 }

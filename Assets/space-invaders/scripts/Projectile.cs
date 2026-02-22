@@ -17,7 +17,7 @@ public abstract class Projectile : MonoBehaviour
             else if (collision.CompareTag("Player")) {
                 collision.GetComponent<Ship>().callPlayerGotHit();
             }
-            if (collision.GetComponent<GameOverLimit>() == null) Destroy(gameObject);
+            if (collision.GetComponent<GameOverLimit>() == null && collision.GetComponent<Limit>() == null) Destroy(gameObject);
         }
     }
 }

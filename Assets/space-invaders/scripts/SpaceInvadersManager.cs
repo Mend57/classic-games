@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class SpaceInvadersManager : MonoBehaviour {
     private const float ALIEN_SPEED_MULTIPLIER = 0.01f, ALIEN_SHOOT_COOLDOWN_MULTIPLIER = 1f;
-    public float moveCooldown = 1f, shootCooldownLimit = 60f, mapLimit = 1000000000000f, spawnUFOCooldownLimit = 60f;
+    public float moveCooldown = 1f, shootCooldownLimit = 60f, spawnUFOCooldownLimit = 60f;
     private float spawnUFOCooldown, baseMoveCooldown, baseShootCooldownLimit, newMoveCooldown;
     private const float MOVE_AMOUNT = 0.2f, MOVE_DOWN_AMOUNT = 0.3f;
     private const float MOVE_COOLDOWN_THRESHOLD = 0.1f, ALIEN_SHOOT_COOLDOWN_THRESHOLD = 5f;
     public int score = 0;
     public GameObject slowProjectile, normalProjectile, fastProjectile, playerProjectile;
     public GameObject highScoreSound, playerDeathSound, alienDeathSound, playerProjectileSound, alienProjectileSound, BGM;
-    public GameObject player, UIManager, UFO;
+    public GameObject player, UIManager, UFO, collisionManager;
     public GameObject lowerAliensPrefab, middleAliensPrefab, topAliensPrefab;
     private GameObject lowerAliensInstance, middleAliensInstance, topAliensInstance;
     public static int highScore = 0;
@@ -20,9 +20,10 @@ public class SpaceInvadersManager : MonoBehaviour {
     private Vector3 basePlayerPos, direction = Vector3.right;
     private readonly WaitForSeconds spawnDelay = new(0.5f);
     private WaitForSeconds moveDelay = new(0.1f);
-    [SerializeField] private int life = 3;
-    public bool limitReached = false, firstLimitReached = false, blockMovement = false;
+    public int life = 3;
+    public bool limitReached = false, firstLimitReached = false, blockMovement = false, hitGameOver = false, hitLimit = false;
     public float limitDirection;
+    private bool movedDownOnce = false;
 
     private IEnumerator spawnAliens() {
         BGM.GetComponent<AudioSource>().Stop();
@@ -70,7 +71,9 @@ public class SpaceInvadersManager : MonoBehaviour {
             yield return moveDelay;
             if (topAliensInstance.transform.childCount > 0) topAliensInstance.transform.position += Vector3.down * MOVE_DOWN_AMOUNT;
             direction = direction == Vector3.right ? Vector3.left : Vector3.right;
+            movedDownOnce = true;
         }
+        collisionManager.GetComponent<CollisionManager>().checkCollisions();
         finishedMoving = true;
     }
 
@@ -83,7 +86,7 @@ public class SpaceInvadersManager : MonoBehaviour {
                 moveCooldown = newMoveCooldown;
             }
             spawnUFOCooldown -= Time.deltaTime;
-            if (spawnUFOCooldown <= 0) {
+            if (spawnUFOCooldown <= 0 && movedDownOnce) {
                 spawnUFO();
                 spawnUFOCooldown = Random.Range(5f, spawnUFOCooldownLimit + 1);
             }
@@ -136,7 +139,9 @@ public class SpaceInvadersManager : MonoBehaviour {
 
     private void handlePlayerHit() {
         playerDeathSound.GetComponent<AudioSource>().Play();
-        if (--life <= 0) {
+        life--;
+        UIManager.GetComponent<SpaceInvadersUIManager>().setLife();
+        if (life <= 0) {
             player.GetComponent<Ship>().playerHit -= handlePlayerHit;
             SpecialShip[] UFOsInMap = FindObjectsByType<SpecialShip>(FindObjectsSortMode.None);
             foreach (SpecialShip UFOInMap in UFOsInMap) UFOInMap.gameObject.GetComponent<AudioSource>().Stop();
@@ -172,7 +177,10 @@ public class SpaceInvadersManager : MonoBehaviour {
 
     private void restartGame() {
         spawned = false;
+        movedDownOnce = false;
         limitReached = false;
+        hitGameOver = false;
+        hitLimit = false;
         firstLimitReached = false;
         blockMovement = false;
         player.SetActive(false);

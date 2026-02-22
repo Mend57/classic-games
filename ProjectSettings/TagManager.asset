@@ -47,6 +47,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Barrier
+    uniqueID: 4282114813
+    locked: 0
   - name: Player
     uniqueID: 1976140497
     locked: 0

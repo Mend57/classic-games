@@ -16,7 +16,10 @@ public class SpecialShip : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.GetComponent<Projectile>() != null) gameManager.increaseScore(value);
+        if (collision.GetComponent<Projectile>() != null) {
+            gameManager.alienDeathSound.GetComponent<AudioSource>().Play();
+            gameManager.increaseScore(value);
+        }
         if (collision.GetComponent<Limit>() == null) Destroy(gameObject);
     }
 

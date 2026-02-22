@@ -7,7 +7,14 @@ public class SpaceInvadersUIManager : MonoBehaviour {
     [SerializeField] private GameObject pauseMenu, gameOverMenu;
     [SerializeField] private GameObject gameManager;
     [SerializeField] private GameObject backgroundMusic;
+    [SerializeField] private GameObject[] lives;
 
+    public void setLife() {
+        for (int i = 0; i < lives.Length; i++) {
+            lives[i].SetActive(i < gameManager.GetComponent<SpaceInvadersManager>().life);
+        }
+    }
+    
     private void Awake() {
         unpause();
         score.text = gameManager.GetComponent<SpaceInvadersManager>().score.ToString();

@@ -6,7 +6,7 @@ public class GameOverLimit : MonoBehaviour
     [SerializeField] GameObject gameManager;
     void OnTriggerEnter2D(Collider2D collision) {
         if (collision.CompareTag("Enemy")) {
-            gameManager.GetComponent<SpaceInvadersManager>().callGameOver();
+            gameManager.GetComponent<SpaceInvadersManager>().hitGameOver = true;
         }
     }
 }

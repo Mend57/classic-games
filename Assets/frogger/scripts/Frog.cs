@@ -7,7 +7,7 @@ public class Frog : MonoBehaviour {
     private const float COOLDOWN = 0.08f, TELEPORT_COOLDOWN = 0.5f;
     private float currentCooldown, currentTeleportCooldown;
     private static int highScore = 0;
-    [SerializeField] private GameObject highScoreSound, moveSound;
+    [SerializeField] private GameObject moveSound;
     [SerializeField] private int score = 0;
     [SerializeField] private float minX, maxX, minY, maxY;
 
@@ -90,10 +90,7 @@ public class Frog : MonoBehaviour {
     }
 
     public void updateHighScore() {
-        if (score > highScore) {
-            highScore = score;
-            highScoreSound.GetComponent<AudioSource>().Play();
-        }
+        if (score > highScore) highScore = score;
     }
 
     public void setTeleporting() {

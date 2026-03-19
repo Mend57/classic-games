@@ -23,12 +23,14 @@ public class FroggerUIManager : MonoBehaviour {
     }
 
     public void unpause() {
+        Cursor.visible = false;
         Time.timeScale = 1f;
         pauseMenu.SetActive(false);
         backgroundMusic.GetComponent<AudioSource>().volume = backgroundMusic.GetComponent<AudioSource>().volume * 2;
     }
 
     private void pause() {
+        Cursor.visible = true;
         highScore.text = "High Score: " + Frog.getHighScore().ToString();
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;

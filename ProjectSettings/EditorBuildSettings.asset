@@ -14,6 +14,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/space-invaders/SpaceInvaders.unity
     guid: cd47dad731af74048980636b4e9d00c2
+  - enabled: 1
+    path: Assets/pong/Pong.unity
+    guid: bafedac576cd476438ac8fb7422658b3
+  - enabled: 1
+    path: Assets/breakout/Breakout.unity
+    guid: 61829d3a44e120e47a20d6665da27397
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

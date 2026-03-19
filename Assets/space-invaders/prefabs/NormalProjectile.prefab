@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 828fbaaf117b84d4daa15db7e78755e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NormalProjectile
-  speed: 5
+  speed: 4
 --- !u!50 &4244239243653118692
 Rigidbody2D:
   serializedVersion: 5
@@ -160,7 +160,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8015713360437714184}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

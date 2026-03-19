@@ -147,7 +147,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3100990125916078537}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -178,4 +178,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bbe005f31de39a40972a3d5d8b1e698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SlowProjectile
-  speed: 5
+  speed: 3

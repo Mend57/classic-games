@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 033766cc31c97904bae4404b8a079544
+guid: 734e81265459f6946add9a8a371af9f3
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6
@@ -20,10 +20,3 @@ AudioImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 225623
-  packageName: 8Bit Music - 062022
-  packageVersion: 1.0
-  assetPath: Assets/8Bit Music - 062022/1. Track 1.wav
-  uploadId: 508285

@@ -8,6 +8,7 @@ public class SpaceInvadersUIManager : MonoBehaviour {
     [SerializeField] private GameObject gameManager;
     [SerializeField] private GameObject backgroundMusic;
     [SerializeField] private GameObject[] lives;
+    private bool gameOverScreen = false;
 
     public void setLife() {
         for (int i = 0; i < lives.Length; i++) {
@@ -21,7 +22,7 @@ public class SpaceInvadersUIManager : MonoBehaviour {
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.Escape)) togglePause();
+        if (Input.GetKeyDown(KeyCode.Escape) && !gameOverScreen) togglePause();
     }
 
     private void togglePause() {
@@ -57,6 +58,8 @@ public class SpaceInvadersUIManager : MonoBehaviour {
     }
 
     public void gameOver() {
+        gameOverScreen = true;
+        Cursor.visible = true;
         finalHighScore.text = "High Score: " + SpaceInvadersManager.highScore.ToString();
         gameOverMenu.SetActive(true);
         Time.timeScale = 0f;

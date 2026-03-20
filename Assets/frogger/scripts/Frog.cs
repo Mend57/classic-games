@@ -10,7 +10,7 @@ public class Frog : MonoBehaviour {
     [SerializeField] private GameObject moveSound;
     [SerializeField] private int score = 0;
     [SerializeField] private float minX, maxX, minY, maxY;
-
+    public bool hasPlayedHighScoreSound = false;
 
     private void Awake() {
         currentCooldown = COOLDOWN;

@@ -5,8 +5,6 @@ public class Teleporter : MonoBehaviour
     private const float INITIAL_Y_POS = -4f;
     private GameObject _UIManager;
     [SerializeField] private GameObject deathSound, scoreSound, highScoreSound;
-    private bool hasPlayedHighScoreSound = false;
-
 
     private void Awake() {
         _UIManager = GameObject.FindGameObjectWithTag("UIManager");
@@ -18,6 +16,7 @@ public class Teleporter : MonoBehaviour
         if (gameObject.CompareTag("Car")) {
             deathSound.GetComponent<AudioSource>().Play();
             player.GetComponent<Frog>().resetScore();
+            player.GetComponent<Frog>().hasPlayedHighScoreSound = false;
             Car.resetSpeed();
             foreach(GameObject spawner in spawners) spawner.GetComponent<CarSpawner>().setInterval();
             player.transform.position = new Vector3(0, INITIAL_Y_POS, 0);
@@ -25,9 +24,9 @@ public class Teleporter : MonoBehaviour
         else {
             player.GetComponent<Frog>().incrementScore();
             if(player.GetComponent<Frog>().getScore() > Frog.getHighScore()) {
-                if (!hasPlayedHighScoreSound) {
+                if (!player.GetComponent<Frog>().hasPlayedHighScoreSound) {
                     highScoreSound.GetComponent<AudioSource>().Play();
-                    hasPlayedHighScoreSound = true;
+                    player.GetComponent<Frog>().hasPlayedHighScoreSound = true;
                 }
                 else scoreSound.GetComponent<AudioSource>().Play();
             }

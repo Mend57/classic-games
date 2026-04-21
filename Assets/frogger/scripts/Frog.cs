@@ -6,7 +6,7 @@ public class Frog : MonoBehaviour {
     private Vector3 targetPosition;
     private const float COOLDOWN = 0.08f, TELEPORT_COOLDOWN = 0.5f;
     private float currentCooldown, currentTeleportCooldown;
-    private static int highScore = 0;
+    public static int highScore = 0;
     [SerializeField] private GameObject moveSound;
     [SerializeField] private int score = 0;
     [SerializeField] private float minX, maxX, minY, maxY;

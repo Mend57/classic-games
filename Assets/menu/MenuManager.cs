@@ -10,6 +10,7 @@ public class MenuManager : MonoBehaviour {
     }
 
     public void exit() {
+        SaveManager.Instance.saveGame();
         Application.Quit();
     }
 
